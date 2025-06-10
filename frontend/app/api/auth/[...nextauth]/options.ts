@@ -1,7 +1,8 @@
-import { AuthOptions, ISODateString } from "next-auth";
+import { Account, AuthOptions, ISODateString } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
-
+import axios from "axios"
+import { LOGIN_URL } from "@/lib/apiEndPoints";
 
 export interface CustomSession {
   user?: CustomUser;
@@ -23,11 +24,38 @@ export const authOptions: AuthOptions = {
     },
 
     callbacks:{
-      async signIn({ user, account}) {
+      async signIn({ user, account}:{user:CustomUser,account:Account|null}) {
+        try {
+          console.log("this is the user" , user)
+          console.log("this is the account ", account)
 
-        console.log("this is the user" , user)
-        console.log("this is the account ", account)
-        return true
+          if (!LOGIN_URL) {
+            console.error("LOGIN_URL is not defined");
+            return false;
+          }
+
+          const Payload = {
+            email: user.email,
+            name: user.name,
+            oauth_id: account?.providerAccountId,
+            provider: account?.provider, 
+            image: user?.image,
+          }
+ 
+          console.log("Attempting to login with payload:", Payload);
+          const {data} = await axios.post(LOGIN_URL, Payload);
+          console.log("Login response:", data);
+
+          user.id = data?.user?.id.toString()
+          user.token = data?.user?.token
+          user.provider = data?.user?.provider
+
+          return true
+        } 
+        catch (error) {
+          console.error("Login error:", error);
+          return false;
+        }
       },
 
       async session({ session, user, token }: { session: CustomSession, user: CustomUser, token: JWT }) {

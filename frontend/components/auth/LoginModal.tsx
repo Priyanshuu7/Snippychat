@@ -12,10 +12,20 @@ import {
 import { Button } from '../ui/button';
 import Image from 'next/image';
 
+import { signIn } from 'next-auth/react';
+
 function LoginModal() {
+
+  const handleLogin = () =>{
+    signIn("google",{
+      callbackUrl:"/dashboard",
+      redirect:true
+    })
+
+  }
   return (
 <Dialog>
-  <DialogTrigger asChild>
+  <DialogTrigger asChild> 
     <Button>
       Getting Started 
     </Button>
@@ -28,12 +38,16 @@ function LoginModal() {
         and remove your data from our servers.
       </DialogDescription>
     </DialogHeader>
-    <Button variant={'outline'}>
-      <Image src="/images/google.png"
-      className='mr-4 size-4'
-      alt='googel image'/>
-      Login with google
-    </Button>
+    <Button variant="outline" onClick={handleLogin}>
+          <Image
+            src="/images/google.png"
+            className=" mr-4"
+            width={25}
+            height={25}
+            alt="google"
+          />
+          Continue with Google
+        </Button>
   </DialogContent>
 </Dialog>
   )
