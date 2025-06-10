@@ -4,4 +4,6 @@ import { authOptions } from "./options";
 
 const nextAuth = NextAuth (authOptions)
 
+// commet//
+
 export {nextAuth as GET ,nextAuth as POST}
