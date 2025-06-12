@@ -8,7 +8,12 @@ export default async function page() {
     const session:CustomSession | null = await getServerSession(authOptions) 
     
     return (
-<DashNavbar name = {session?.user?.name! } image={session?.user?.image ?? undefined}/>
+
+      <div>
+        <p>{JSON.stringify(session)}</p>
+
+        <DashNavbar name = {session?.user?.name! } image={session?.user?.image ?? undefined}/>
+      </div>
   )
 }
 
