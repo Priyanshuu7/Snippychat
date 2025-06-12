@@ -9,7 +9,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -27,17 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
       <SessionProvider>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Toaster richColors duration={10000} />
-      </body>
-
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {children}
+          <Toaster richColors duration={10000} />
+        </body>
       </SessionProvider>
-
     </html>
   );
 }

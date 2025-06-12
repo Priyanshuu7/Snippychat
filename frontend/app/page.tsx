@@ -6,9 +6,11 @@ import UserReviews from "@/components/base/UserReviews";
 import { getServerSession } from "next-auth"; 
 import { authOptions, CustomSession } from "./api/auth/[...nextauth]/options";
 
+
 export default  async function Home() {
 
   const session:CustomSession  | null = await getServerSession(authOptions)
+  
   return (
  <div className="min-h-screen flex flex-col ">
       {/* Header */}
