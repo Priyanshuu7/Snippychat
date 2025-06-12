@@ -26,7 +26,7 @@ router.get("/chat-group", authMiddleware, ChatGroupController.index);
 
 // Update a specific chat group by ID (Protected route)
 router.put("/chat-group/:id", authMiddleware, ChatGroupController.update);
-
+ 
 // Delete a specific chat group by ID (Protected route)
 router.delete("/chat-group/:id", authMiddleware, ChatGroupController.destroy);
 
