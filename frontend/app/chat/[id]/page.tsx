@@ -6,7 +6,7 @@ export default function Chat({ params }: { params: { id: string } }) {
   return (
     <div>
       <h1>Heloo cht page </h1>
-      <ChatBase />
+      <ChatBase groupId={params.id} />
     </div>
   )
 }

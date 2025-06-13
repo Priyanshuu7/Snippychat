@@ -18,8 +18,8 @@ router.post("/auth/login", AuthController.login);
 // Create a new chat group (Protected route)
 router.post("/chat-group", authMiddleware, ChatGroupController.store);
 
-// Get a single chat group by ID (Protected route)
-router.get("/chat-group/:id", authMiddleware, ChatGroupController.show);
+// Get a single chat group by ID (Public route)
+router.get("/chat-group/:id",ChatGroupController.show);
 
 // Get all chat groups (Protected route)
 router.get("/chat-group", authMiddleware, ChatGroupController.index);
