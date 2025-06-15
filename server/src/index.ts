@@ -11,6 +11,8 @@ import { createAdapter } from "@socket.io/redis-streams-adapter";
 import redis from "./config/redis.config.js";
 import { instrument } from "@socket.io/admin-ui";
 
+
+// socket server connection //
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -25,8 +27,9 @@ instrument(io, {
 });
 
 setupSocket(io);
-
 export { io };
+
+
 // * Middleware
 app.use(cors());
 app.use(express.json());
@@ -37,5 +40,4 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api", Routes);
-
 server.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
