@@ -3,13 +3,13 @@ import React from 'react'
 import { authOptions, CustomSession } from '../api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import CreateChat from '@/components/group-chats/CreateChat'
-import { fetchChatGroup } from '../fetch/groupFetch'
+import { fetchChatGroups } from '../fetch/groupFetch'
 import GroupChatCard from '@/components/group-chats/GroupChatCard'
 
 
 export default async function page() {
     const session: CustomSession | null = await getServerSession(authOptions)
-    const groups :Array<GroupChatType> | [] = await fetchChatGroup(session?.user?.token!)
+    const groups :Array<GroupChatType> | [] = await fetchChatGroups(session?.user?.token!)
   
 
     return (
