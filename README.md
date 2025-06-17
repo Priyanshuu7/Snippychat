@@ -70,6 +70,4 @@ SnippyChat is a real-time group chat application that allows users to create, jo
 - Reactions and threaded replies
 - Optimized mobile responsiveness
 
-## License
 
-MIT License © Priyanshu Rajak (https://github.com/Priyanshuu7)
