@@ -9,7 +9,7 @@ import { getServerSession } from 'next-auth'
 /**
  * @param {{ params: { id: string }, searchParams?: { [key: string]: string | string[] } }} props
  */
-// @ts-expect-error
+// @ts-expect-error Next.js injects correct types at runtime; explicit typing not needed
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function Chat({ params, searchParams }) {
 
