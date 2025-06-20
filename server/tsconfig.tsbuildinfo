@@ -1,0 +1,1 @@
+{"root":["./src/customtypes.d.ts","./src/index.ts","./src/socket.ts","./src/config/db.config.ts","./src/config/redis.config.ts","./src/controllers/AuthControllers.ts","./src/controllers/ChatGroupControllers.ts","./src/controllers/ChatGroupUserController.ts","./src/controllers/ChatsController.ts","./src/middlewares/AuthMiddleware.ts","./src/routes/index.ts"],"version":"5.8.3"}
