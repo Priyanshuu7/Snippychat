@@ -6,7 +6,7 @@ import React from 'react'
 import { authOptions, CustomSession } from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 
-export default async function Chat({ params, searchParams }: { params: { id: string }; searchParams?: { [key: string]: string | string[] } }) {
+export default async function Chat({ params }: { params: { id: string }; searchParams?: { [key: string]: string | string[] } }) {
 
 
   if(params.id.length != 36){
