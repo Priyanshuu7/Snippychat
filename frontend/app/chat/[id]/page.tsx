@@ -8,7 +8,7 @@ import { getServerSession } from 'next-auth'
 
 export default async function Chat({ params }: { params: { id: string } }) {
 
-
+// terimkc//
   if(params.id.length != 36){
     return notFound()
   }
