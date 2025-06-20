@@ -53,8 +53,8 @@ export default function ChatUserDialog({
           params["id"] as string,
           JSON.stringify(data?.data)
         );
-      } catch (error) {
-        toast.error("Something went wrong.please try again!");
+      } catch {
+        toast.error("Something went wrong.please try again!" );
       }
     }
     if (group.passcode != state.passcode) {

@@ -20,9 +20,14 @@ export default async function Chat({ params }: { params: { id: string } }) {
 
   const session: CustomSession | null = await getServerSession(authOptions)
 
-  const users : Array<GroupChatUserType> | [] = await fetchChatUsers(params.id, session?.user?.token!) 
+  const token = session?.user?.token;
+  if (!token) {
+    return notFound();
+  }
+
+  const users : Array<GroupChatUserType> | [] = await fetchChatUsers(params.id, token)
  
-  const chats : Array<MessageType> | [] = await fetchChats(params.id, session?.user?.token!)
+  const chats : Array<MessageType> | [] = await fetchChats(params.id, token)
  
   return ( 
     <div>

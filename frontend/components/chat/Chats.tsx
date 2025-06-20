@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { getSocket } from "@/lib/socket.config";
-import { Input } from "../ui/input";
+
 import { v4 as uuidv4 } from "uuid";
 export default function Chats({
   group,
@@ -19,13 +19,13 @@ export default function Chats({
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  let socket = useMemo(() => {
+  const socket = useMemo(() => {
     const socket = getSocket();
     socket.auth = {
       room: group.id,
     };
     return socket.connect();
-  }, []);
+  }, [group.id]);
   useEffect(() => {
     socket.on("message", (data: MessageType) => {
       console.log("The message is", data);
@@ -36,7 +36,7 @@ export default function Chats({
     return () => {
       socket.close();
     };
-  }, []);
+  });
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 

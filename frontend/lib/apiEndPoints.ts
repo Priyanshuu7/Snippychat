@@ -1,4 +1,4 @@
-import { CodeSandboxLogoIcon } from "@radix-ui/react-icons";
+
 import Env from "./env";
 
 export const BASE_URL = Env.BACKEND_URL

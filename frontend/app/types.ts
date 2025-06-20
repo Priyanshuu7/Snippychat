@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 type GroupChatType = {
     id: string;
     user_id: number;

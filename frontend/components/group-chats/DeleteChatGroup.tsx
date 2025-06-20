@@ -42,7 +42,7 @@ export default function DeleteChatGroup({
         setOpen(false);
       }
       setLoading(false);
-    } catch (error) {
+    } catch {
       setLoading(false);
       toast.error("Somethign went wrong.please try again later.");
     }
@@ -54,7 +54,7 @@ export default function DeleteChatGroup({
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your chat
+            This action cannot be undone.This will permanently delete your chat
             group and it's conversations.
           </AlertDialogDescription>
         </AlertDialogHeader>
