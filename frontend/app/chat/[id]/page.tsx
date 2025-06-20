@@ -6,8 +6,12 @@ import React from 'react'
 import { authOptions, CustomSession } from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 
+/**
+ * @param {{ params: { id: string }, searchParams?: { [key: string]: string | string[] } }} props
+ */
+// @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function Chat({ params, searchParams }: { params: { id: string }; searchParams?: { [key: string]: string | string[] } }) {
+export default async function Chat({ params, searchParams }) {
 
 // terimkc//
   if(params.id.length != 36){
