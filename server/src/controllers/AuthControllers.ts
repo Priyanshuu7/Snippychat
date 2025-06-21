@@ -52,7 +52,7 @@ class AuthController {
 
             // Return success response with user data and token
             return res.json({
-                message: "Logged in successfully !!",
+                message: "Logged in successfullqqqy !!",
                 user: {
                     ...findUser,
                     token: `Bearer ${token}`,
@@ -60,7 +60,7 @@ class AuthController {
             });
         } catch (error) {
             // Handle any errors during login process
-            return res.status(500).json({ message: "Something went wrong." });
+            return res.status(500).json({ message: "teri mkc." });
         }
     }
 }
