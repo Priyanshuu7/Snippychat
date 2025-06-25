@@ -1,19 +1,19 @@
-"use client";
-import React, { Suspense, useState } from "react";
+'use client';
+import React, { Suspense, useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import dynamic from "next/dynamic";
-import { CustomUser } from "@/app/api/auth/[...nextauth]/options";
-import EditGroupChat from "./EditGroupChat";
-import { toast } from "sonner";
-import Env from "@/lib/env";
-import { DotsVerticalIcon } from "@radix-ui/react-icons";
+} from '../ui/dropdown-menu';
+import dynamic from 'next/dynamic';
+import { CustomUser } from '@/app/api/auth/[...nextauth]/options';
+import EditGroupChat from './EditGroupChat';
+import { toast } from 'sonner';
+import Env from '@/lib/env';
+import { DotsVerticalIcon } from '@radix-ui/react-icons';
 
-const DeleteChatGroup = dynamic(() => import("./DeleteChatGroup"));
+const DeleteChatGroup = dynamic(() => import('./DeleteChatGroup'));
 
 export default function GroupChatCardMenu({
   group,
@@ -27,7 +27,7 @@ export default function GroupChatCardMenu({
 
   const handleCopy = () => {
     navigator.clipboard?.writeText(`${Env.APP_URL}/chat/${group.id}`);
-    toast.success("Link copied successfully!");
+    toast.success('Link copied successfully!');
   };
 
   return (

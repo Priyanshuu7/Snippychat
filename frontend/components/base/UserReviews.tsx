@@ -1,8 +1,6 @@
-import React from "react";
-import { Card } from "../ui/card";
-import Image from "next/image";
-
-
+import React from 'react';
+import { Card } from '../ui/card';
+import Image from 'next/image';
 
 export default function UserReviews() {
   return (
@@ -13,7 +11,7 @@ export default function UserReviews() {
       <div className="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6">
         <Card className="p-6 text-center">
           <p className="text-lg text-gray-700">
-          SnippyChat is a game-changer! The fastest way to start a chat.”
+            SnippyChat is a game-changer! The fastest way to start a chat.”
           </p>
           <div className="mt-4">
             <Image

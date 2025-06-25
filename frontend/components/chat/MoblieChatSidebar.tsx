@@ -1,13 +1,13 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+} from '@/components/ui/sheet';
+import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 
 export default function MobileChatSidebar({
   users,
@@ -29,7 +29,7 @@ export default function MobileChatSidebar({
               <div key={index} className="bg-white rounded-md p-2 mt-2">
                 <p className="font-bold"> {item.name}</p>
                 <p>
-                  Joined :{" "}
+                  Joined :{' '}
                   <span>{new Date(item.created_at).toDateString()}</span>
                 </p>
               </div>

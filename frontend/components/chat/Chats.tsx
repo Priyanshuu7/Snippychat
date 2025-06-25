@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { getSocket } from "@/lib/socket.config";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { getSocket } from '@/lib/socket.config';
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 export default function Chats({
   group,
   oldMessages,
@@ -11,12 +11,12 @@ export default function Chats({
   oldMessages: Array<MessageType> | [];
   chatUser?: GroupChatUserType;
 }) {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Array<MessageType>>(oldMessages);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const socket = useMemo(() => {
@@ -27,9 +27,9 @@ export default function Chats({
     return socket.connect();
   }, [group.id]);
   useEffect(() => {
-    socket.on("message", (data: MessageType) => {
-      console.log("The message is", data);
-      setMessages((prevMessages) => [...prevMessages, data]);
+    socket.on('message', (data: MessageType) => {
+      console.log('The message is', data);
+      setMessages(prevMessages => [...prevMessages, data]);
       scrollToBottom();
     });
 
@@ -43,12 +43,12 @@ export default function Chats({
     const payload: MessageType = {
       id: uuidv4(),
       message: message,
-      name: chatUser?.name ?? "Unknown",
+      name: chatUser?.name ?? 'Unknown',
       created_at: new Date().toISOString(),
       group_id: group.id,
     };
-    socket.emit("message", payload);
-    setMessage("");
+    socket.emit('message', payload);
+    setMessage('');
     setMessages([...messages, payload]);
   };
 
@@ -57,13 +57,13 @@ export default function Chats({
       <div className="flex-1 overflow-y-auto flex flex-col-reverse">
         <div ref={messagesEndRef} />
         <div className="flex flex-col gap-2">
-          {messages.map((message) => (
+          {messages.map(message => (
             <div
               key={message.id}
               className={`max-w-sm rounded-lg p-2 ${
                 message.name === chatUser?.name
-                  ? "bg-gradient-to-r from-blue-400 to-blue-600  text-white self-end"
-                  : "bg-gradient-to-r from-gray-200 to-gray-300 text-black self-start"
+                  ? 'bg-gradient-to-r from-blue-400 to-blue-600  text-white self-end'
+                  : 'bg-gradient-to-r from-gray-200 to-gray-300 text-black self-start'
               }`}
             >
               {message.message}
@@ -77,9 +77,9 @@ export default function Chats({
           placeholder="Type a message..."
           value={message}
           className="flex-1 p-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={e => setMessage(e.target.value)}
         />
       </form>
     </div>
   );
-} 
+}

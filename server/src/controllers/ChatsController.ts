@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import prisma from "../config/db.config.js";
+import { Request, Response } from 'express';
+import prisma from '../config/db.config.js';
 
 class ChatsController {
   static async index(req: Request, res: Response) {

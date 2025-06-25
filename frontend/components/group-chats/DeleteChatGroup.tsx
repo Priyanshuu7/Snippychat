@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,13 +8,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import axios from "axios";
+} from '@/components/ui/alert-dialog';
+import axios from 'axios';
 //test//
-import { toast } from "sonner";
+import { toast } from 'sonner';
 
-import { CHAT_GROUP_URL } from "@/lib/apiEndPoints";
-import { clearCache } from "@/app/actions/common";
+import { CHAT_GROUP_URL } from '@/lib/apiEndPoints';
+import { clearCache } from '@/app/actions/common';
 
 export default function DeleteChatGroup({
   open,
@@ -37,14 +37,14 @@ export default function DeleteChatGroup({
         },
       });
       if (data?.message) {
-        clearCache("dashboard");
+        clearCache('dashboard');
         toast.success(data?.message);
         setOpen(false);
       }
       setLoading(false);
     } catch {
       setLoading(false);
-      toast.error("Somethign went wrong.please try again later.");
+      toast.error('Somethign went wrong.please try again later.');
     }
   };
 
@@ -61,7 +61,7 @@ export default function DeleteChatGroup({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction disabled={loading} onClick={deleteChatGroup}>
-            {loading ? "Processing.." : "Continue"}
+            {loading ? 'Processing..' : 'Continue'}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

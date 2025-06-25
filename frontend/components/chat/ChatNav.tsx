@@ -1,6 +1,5 @@
-import React from "react";
-import MobileChatSidebar from "./MoblieChatSidebar";
-
+import React from 'react';
+import MobileChatSidebar from './MoblieChatSidebar';
 
 export default function ChatNav({
   chatGroup,
@@ -8,7 +7,7 @@ export default function ChatNav({
   user,
 }: {
   chatGroup: GroupChatType;
-  users: Array<GroupChatUserType> | [] ;
+  users: Array<GroupChatUserType> | [];
   user?: GroupChatUserType;
 }) {
   return (
@@ -25,5 +24,5 @@ export default function ChatNav({
       </div>
       <p>{user?.name}</p>
     </nav>
-  ); 
+  );
 }

@@ -1,6 +1,5 @@
-import React from "react";
-import { Card } from "../ui/card";
-
+import React from 'react';
+import { Card } from '../ui/card';
 
 export default function FeatureCard({
   icon,
