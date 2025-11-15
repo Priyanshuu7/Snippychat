@@ -20,26 +20,36 @@ export default function Chats({
   };
 
   const socket = useMemo(() => {
-    const socket = getSocket();
-    socket.auth = {
-      room: group.id,
-    };
-    return socket.connect();
+    const s = getSocket();
+    // Avoid repeated connect/disconnect on every render
+    s.auth = { room: group.id };
+    return s.connect();
   }, [group.id]);
-  useEffect(() => {
-    socket.on('message', (data: MessageType) => {
-      console.log('The message is', data);
-      setMessages(prevMessages => [...prevMessages, data]);
-      scrollToBottom();
-    });
 
-    return () => {
-      socket.close();
+  // Always reconcile messages from backend when group/oldMessages changes
+  useEffect(() => {
+    setMessages(oldMessages);
+  }, [oldMessages, group.id]);
+
+  useEffect(() => {
+    // Handler in a ref to avoid multiple listener instances
+    const handler = (data: MessageType) => {
+      setMessages(prev => {
+        // Avoid duplicates based on id
+        if (prev.some(m => m.id === data.id)) return prev;
+        return [...prev, data];
+      });
+      scrollToBottom();
     };
-  });
+    socket.on('message', handler);
+    return () => {
+      socket.off('message', handler);
+      socket.disconnect();
+    };
+  }, [socket]);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
     const payload: MessageType = {
       id: uuidv4(),
       message: message,
@@ -49,7 +59,7 @@ export default function Chats({
     };
     socket.emit('message', payload);
     setMessage('');
-    setMessages([...messages, payload]);
+    // (No need to optimistically add to message state, server echoes message back)
   };
 
   return (

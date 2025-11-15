@@ -13,13 +13,31 @@ import { instrument } from '@socket.io/admin-ui';
 
 // socket server connection //
 const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: ['http://localhost:3000', 'https://admin.socket.io'],
-    credentials: true,
-  },
-  adapter: createAdapter(redis),
-});
+let io;
+try {
+  const redisAvailable = !!process.env.REDIS_URL;
+  if (redisAvailable) {
+    const ioSrv = new Server(server, {
+      cors: {
+        origin: ['http://localhost:3000', 'https://admin.socket.io'],
+        credentials: true,
+      },
+      adapter: createAdapter(redis),
+    });
+    io = ioSrv;
+    console.log('Using Redis adapter for Socket.io.');
+  } else {
+    throw new Error('No REDIS_URL set');
+  }
+} catch (e) {
+  io = new Server(server, {
+    cors: {
+      origin: ['http://localhost:3000', 'https://admin.socket.io'],
+      credentials: true,
+    },
+  });
+  console.log('Redis unavailable, running Socket.io without Redis adapter.');
+}
 instrument(io, {
   auth: false,
   mode: 'development',
@@ -29,7 +47,10 @@ setupSocket(io);
 export { io };
 
 // * Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://admin.socket.io'],
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

@@ -15,6 +15,7 @@ import { getServerSession } from 'next-auth';
 // @ts-expect-error Next.js injects correct types at runtime; explicit typing not needed
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function Chat({ params, searchParams }) {
+  params = await params;
   // terimkc//
   if (params.id.length != 36) {
     return notFound();
